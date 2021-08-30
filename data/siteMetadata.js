@@ -1,9 +1,8 @@
 const siteMetadata = {
   title: "H1mple's Blog",
   author: 'H1mple',
-  headerTitle: 'H1mple',
-  description:
-    "This is H1mple's Blog",
+  headerTitle: '',
+  description: "I am baohangxing(H1mple), This is baohangxing's Blog. 我叫包航行，这是包航行的博客",
   language: 'zh-cn',
   siteUrl: 'https://blog.bhxya.com',
   siteRepo: 'https://github.com/baohangxing/bhxya.com',
