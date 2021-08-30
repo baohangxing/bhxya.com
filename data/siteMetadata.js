@@ -22,8 +22,8 @@ const siteMetadata = {
     // supports plausible, simpleAnalytics or googleAnalytics
     plausibleDataDomain: '', // e.g. tailwind-nextjs-starter-blog.vercel.app
     simpleAnalytics: false, // true or false
-    googleAnalyticsId: process.env.GOOGLE_ANALYTICS_ID, // e.g. UA-000000-2 or G-XXXXXXX
-    baiduAnalyticsId: process.env.BAIDU_ANALYTICS_ID,
+    googleAnalyticsId: 'G-Y45TPTYSSQ', // e.g. UA-000000-2 or G-XXXXXXX
+    baiduAnalyticsId: '1a9d378fc18b78036e1778c13cfb0b10',
   },
   comment: {
     // Select a provider and use the environment variables associated to it
