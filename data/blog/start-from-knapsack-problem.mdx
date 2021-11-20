@@ -10,11 +10,14 @@ summary: '背包九讲是对于动态规划的算法问题的很好的总结和�
 
 ## TODO
 
-```
+### 01背包
+
+​	有 N 件物品和一个容量为 V 的背包。放入第 i 件物品耗费的费用是 Ci1，得到的价值是 Wi。
+求解将哪些物品装入背包可使价值总和最大。
+
+```js
 /**
  * 01背包
- * 有 N 件物品和一个容量为 V 的背包。放入第 i 件物品耗费的费用是 Ci1，得到的价值是 Wi。
-   求解将哪些物品装入背包可使价值总和最大。
    N == costs.length == values.length
  * @param {Number} v 
  * @param {Array} costs 
@@ -187,9 +190,7 @@ function maxValueInDoubleCostPack(V, U, costsV = [], costsU = [], values = []) {
     }
     return res;
 }
-
-// console.log(maxValueInDoubleCostPack(4, 6, [1, 2, 3], [1, 1, 2], [1, 3, 5])); //6
-
+ 
 /**
  * 分组的背包问题
  *  有 N 件物品和一个容量为 V 的背包。第 i 件物品的费用是 Ci，价值是 Wi。这些
@@ -213,20 +214,5 @@ function maxValueInGroupPack(V, costs = [], values = []) {
     }
     return Math.max(...dp);
 }
-
-// console.log(
-//     maxValueInGroupPack(
-//         6,
-//         [
-//             [1, 2, 3],
-//             [1, 2, 3],
-//             [1, 4],
-//         ],
-//         [
-//             [2, 1, 4],
-//             [1, 1, 3],
-//             [3, 7],
-//         ]
-//     ) //10
-// );
+ 
 ```
