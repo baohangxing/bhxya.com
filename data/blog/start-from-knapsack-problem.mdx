@@ -6,13 +6,13 @@ draft: false
 summary: '背包九讲是对于动态规划的算法问题的很好的总结和归纳'
 ---
 
-# TODO
+# 从背包问题开始解决动态规划
 
-## TODO
+## 背包问题
 
 ### 01背包
 
-​	有 N 件物品和一个容量为 V 的背包。放入第 i 件物品耗费的费用是 Ci1，得到的价值是 Wi。
+有 N 件物品和一个容量为 V 的背包。放入第 i 件物品耗费的费用是 Ci1，得到的价值是 Wi。
 求解将哪些物品装入背包可使价值总和最大。
 
 ```js
@@ -35,13 +35,14 @@ function maxValueIn01Pack(V, costs = [], values = []) {
     }
     return Math.max(...dp);
 }
+```
 
-// console.log(maxValueIn01Pack(5, [1, 2, 3, 2, 4, 2, 1], [1, 2, 2, 4, 6, 2, 3])); //9
+有 N 件物品和一个容量为 V 的背包。每种物品都有无限件可用。放入第 i 件物品耗费的费用是 Ci1，得到的价值是 Wi。
+求解将哪些物品装入背包可使价值总和最大。
 
+```js
 /**
- * 完全背包
- * 有 N 件物品和一个容量为 V 的背包。每种物品都有无限件可用。放入第 i 件物品耗费的费用是 Ci1，得到的价值是 Wi。
-   求解将哪些物品装入背包可使价值总和最大。
+ * 完全背包 
    N == costs.length == values.length
  * @param {Number} v 
  * @param {Array} costs 
@@ -60,15 +61,14 @@ function maxValueInCompletelyPack(V, costs = [], values = []) {
     return Math.max(...dp);
 }
 
-// console.log(
-//     maxValueInCompletelyPack(5, [1, 2, 3, 2, 4, 2], [1, 2, 2, 4, 6, 2]) //9
-// );
-
+```
+ 
+有 N 种物品和一个容量为 V 的背包。第 i 种物品最多有 Mi 件可用，每件耗费的
+空间是 Ci，价值是 Wi。求解将哪些物品装入背包可使这些物品的耗费的空间总和不超
+过背包容量，且价值总和最大。
+```js
 /**
- * 多重背包
- * 有 N 种物品和一个容量为 V 的背包。第 i 种物品最多有 Mi 件可用，每件耗费的
-    空间是 Ci，价值是 Wi。求解将哪些物品装入背包可使这些物品的耗费的空间总和不超
-    过背包容量，且价值总和最大。
+ * 多重背包 
  * @param {Number} v 
  * @param {Array} costs 
  * @param {Array} quantities 
@@ -94,20 +94,16 @@ function maxValueInMultiplePack(V, costs = [], quantities = [], values = []) {
     return Math.max(...dp);
 }
 
-// console.log(
-//     maxValueInMultiplePack(
-//         9,
-//         [1, 2, 3, 2, 4, 2],
-//         [1, 1, 1, 2, 1, 1],
-//         [1, 2, 2, 4, 6, 3]
-//     )
-// ); //15
+```
 
+
+如果将前面1、2、3中的三种背包问题混合起来。也就是说，有的物品只可以取一
+次（01 背包），有的物品可以取无限次（完全背包），有的物品可以取的次数有一个上限
+（多重背包）。应该怎么求解呢？
+
+```js
 /**
- * 混合背包
- * 如果将前面1、2、3中的三种背包问题混合起来。也就是说，有的物品只可以取一
-    次（01 背包），有的物品可以取无限次（完全背包），有的物品可以取的次数有一个上限
-    （多重背包）。应该怎么求解呢？
+ * 混合背包 
  * @param {Number} v 
  * @param {Array} costs 
  * @param {Array} quantities 'o' 表示只有一个 'a' 表示任意数量 数字表示取的次数上限
@@ -146,22 +142,18 @@ function maxValueInMixedPack(V, costs = [], quantities = [], values = []) {
     return Math.max(...dp);
 }
 
-// console.log(
-//     maxValueInMixedPack(
-//         9,
-//         [1, 2, 3, 2, 4, 2],
-//         [1, 1, 1, 'o', 'a', 1],
-//         [1, 2, 2, 4, 6, 3]
-//     )
-// ); //14
+```
+
+二维费用的背包问题是指：对于每件物品，具有两种不同的费用，选择这件物品必
+须同时付出这两种费用。对于每种费用都有一个可付出的最大值（背包容量）。问怎样
+选择物品可以得到最大的价值。
+设第 i 件物品所需的两种费用分别为 Ci 和 Di。两种费用可付出的最大值（也即两
+种背包容量）分别为 V 和 U。物品的价值为 Wi。
+
+```js
 
 /**
- * 二维费用的背包问题
- * 二维费用的背包问题是指：对于每件物品，具有两种不同的费用，选择这件物品必
-    须同时付出这两种费用。对于每种费用都有一个可付出的最大值（背包容量）。问怎样
-    选择物品可以得到最大的价值。
-    设第 i 件物品所需的两种费用分别为 Ci 和 Di。两种费用可付出的最大值（也即两
-    种背包容量）分别为 V 和 U。物品的价值为 Wi。
+ * 二维费用的背包问题 
  * @param {Number} V
  * @param {Number} U
  * @param {Array} costsV 
@@ -190,12 +182,16 @@ function maxValueInDoubleCostPack(V, U, costsV = [], costsU = [], values = []) {
     }
     return res;
 }
+
+```
  
+分组的背包问题
+有 N 件物品和一个容量为 V 的背包。第 i 件物品的费用是 Ci，价值是 Wi。这些
+物品被划分为 K 组，每组中的物品互相冲突，最多选一件。求解将哪些物品装入背包
+可使这些物品的费用总和不超过背包容量，且价值总和最大。
+
+```js
 /**
- * 分组的背包问题
- *  有 N 件物品和一个容量为 V 的背包。第 i 件物品的费用是 Ci，价值是 Wi。这些
-    物品被划分为 K 组，每组中的物品互相冲突，最多选一件。求解将哪些物品装入背包
-    可使这些物品的费用总和不超过背包容量，且价值总和最大。
  * @param {Number} V
  * @param {Array} costs  
  * @param {Array} values 
@@ -216,3 +212,5 @@ function maxValueInGroupPack(V, costs = [], values = []) {
 }
  
 ```
+
+## TODO
