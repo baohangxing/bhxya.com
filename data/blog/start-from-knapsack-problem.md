@@ -1,9 +1,9 @@
 ---
-title: '从背包问题开始解决动态规划类问题'
+title: '从背包问题开始解决Leetcode上的类似问题'
 date: '2021-11-21'
 tags: ['Algorithm', 'Dynamic programming']
 draft: false
-summary: '背包九讲是对于动态规划的算法问题的很好的总结和归纳，本文从背包问题开始，并尝试解决Leetcode上的经典动态规划题目'
+summary: '背包九讲是对于这一类的动态规划的算法问题的很好的总结和归纳，本文从背包问题开始，并尝试解决Leetcode上的类似的问题'
 ---
 
 ## 背包问题
@@ -261,7 +261,7 @@ function maxValueInDependentPack(V, n, master = [], appendix = []) {
 }
 ```
 
-> 更一般的问题是：依赖关系以图论中**“森林”**的形式给出。也就是说，主件的附件仍然可以具有自己的附件集合。限制只是每个物品最多只依赖于一个物品（只有一个主件）且不出现循环依赖。
+> 更一般的问题是：依赖关系以图论中 “森林” 的形式给出。也就是说，主件的附件仍然可以具有自己的附件集合。限制只是每个物品最多只依赖于一个物品（只有一个主件）且不出现循环依赖。
 >
 > 解决这个问题仍然可以用将每个主件及其附件集合转化为物品组的方式。唯一不同的是，由于附件可能还有附件，就不能将每个附件都看作一个一般的 `01 背包中`的物了。若这个附件也有附件集合，则它必定要被先转化为物品组，然后用分组的背包问题 解出主件及其附件集合所对应的附件组中各个费用的附件所对应的价值。
 >
@@ -291,4 +291,219 @@ function maxValueInDependentPack(V, n, master = [], appendix = []) {
 
 ## Leetcode 里的背包问题
 
-### 待更新
+### 01背包
+
+#### 例题：[416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/)
+
+> 给你一个 **只包含正整数** 的 **非空** 数组 `nums` 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。
+
+**示例 1：**
+
+```
+输入：nums = [1,5,11,5]
+输出：true
+解释：数组可以分割成 [1, 5, 5] 和 [11] 。
+```
+
+**提示：**
+
+- `1 <= nums.length <= 200`
+- `1 <= nums[i] <= 100`
+
+分割成两个子集可以变相的看成是取值和值一半的方案，就是01背包问题，问题也从求最大值转换成了最小的数量的方案（方案只要存在就必定可以拆分）
+
+```js
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+var canPartition = function (nums) {
+    let halfSum = nums.reduce((a, b) => a + b, 0) / 2;
+    if (Math.floor(halfSum) !== halfSum) return false; //不可整分的必然不行
+    let dp = new Array(halfSum + 1).fill(Infinity);
+    //dp[x]表示构成数x的最小的使用数字的数量
+    dp[0] = 0;
+    for (let i = 0; i < nums.length; i++) {
+        for (let j = halfSum; j >= nums[i]; j--) {
+            if (j - nums[i] >= 0) dp[j] = Math.min(dp[j], dp[j - nums[i]] + 1);
+        }
+    }
+    return dp[halfSum] !== Infinity;
+};
+```
+
+### 完全背包
+
+#### 例题：[279. 完全平方数](https://leetcode-cn.com/problems/perfect-squares/)
+
+> 给定正整数 n，找到若干个完全平方数（比如 1, 4, 9, 16, ...）使得它们的和等于 n。你需要让组成和的完全平方数的个数最少。
+>
+> 给你一个整数 n ，返回和为 n 的完全平方数的 最少数量 。
+>
+> 完全平方数 是一个整数，其值等于另一个整数的平方；换句话说，其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是。 
+
+**示例 1：**
+
+```
+输入：n = 12
+输出：3 
+解释：12 = 4 + 4 + 4
+```
+
+**提示：**
+
+- `1 <= n <= 1000`
+
+求最小值的完全背包问题：物品就是完全平方数，价值就是完全平方数的大小，体积就是完全平方数的值的和：
+
+```js
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var numSquares = function (n) {
+    const arr = new Array(Math.ceil(Math.sqrt(n)))
+        .fill(0)
+        .map((x, i) => (i + 1) * (i + 1));
+    let dp = new Array(n + 1).fill(Infinity); //dp[i] 表示构成i的最少的完全平方数的数量
+    dp[0] = 0;
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j <= n; j++) {
+            if (j - arr[i] >= 0) dp[j] = Math.min(dp[j], dp[j - arr[i]] + 1);
+        }
+    }
+    return dp[n];
+};
+```
+
+#### 例题： [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/)
+
+> 给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。
+>
+> 计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。
+>
+> 你可以认为每种硬币的数量是无限的。
+>
+
+**示例 1：**
+
+```
+输入：coins = [1, 2, 5], amount = 11
+输出：3 
+解释：11 = 5 + 5 + 1
+```
+
+**提示：**
+
+- `1 <= coins.length <= 12`
+- `1 <= coins[i] <= 2^31 - 1`
+- `0 <= amount <= 104`
+
+和上一题的思路完全一致，也是求最小值的完全背包问题：物品就是硬币，价值就是硬币的值，体积就是硬币的值的和：
+
+```js
+/**
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+var coinChange = function (coins, amount) {
+    let dp = new Array(amount + 1).fill(Infinity);
+    //dp[i] 表示构成金额i的最少的硬币的数量
+    dp[0] = 0;
+    for (let i = 0; i < coins.length; i++) {
+        for (let j = 0; j <= amount; j++) {
+            if (j - coins[i] >= 0)
+                dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);
+        }
+    }
+    return dp[amount] === Infinity ? -1 : dp[amount];
+};
+```
+
+### 二维背包
+
+#### 例题: [474. 一和零](https://leetcode-cn.com/problems/ones-and-zeroes/)
+
+> 给你一个二进制字符串数组 strs 和两个整数 m 和 n 。
+>
+> 请你找出并返回 strs 的最大子集的长度，该子集中 最多 有 m 个 0 和 n 个 1 。
+>
+> 如果 x 的所有元素也是 y 的元素，集合 x 是集合 y 的 子集 。
+
+**示例 1：**
+
+```
+输入：strs = ["10", "0001", "111001", "1", "0"], m = 5, n = 3
+输出：4
+解释：最多有 5 个 0 和 3 个 1 的最大子集是 {"10","0001","1","0"} ，因此答案是 4 。
+其他满足题意但较小的子集包括 {"0001","1"} 和 {"10","1","0"} 。{"111001"} 不满足题意，因为它含 4 个 1 ，大于 n 的值 3 。
+```
+
+**提示：**
+
+- `1 <= strs.length <= 600`
+- `1 <= strs[i].length <= 100`
+- `strs[i]` 仅由 `'0'` 和 `'1'` 组成
+- `1 <= m, n <= 100`
+
+二维背包问题，两个维度的限制：0和1的数量，求最大子集的长度：
+
+```js
+/**
+ * @param {string[]} strs
+ * @param {number} m 0
+ * @param {number} n 1
+ * @return {number}
+ */
+var findMaxForm = function (strs, m, n) {
+    let arr = strs.map(x => {
+        let zero = x.split('').filter(x => x === '0').length;
+        return {
+            zero: zero,
+            one: x.length - zero,
+        };
+    });
+    let dp = new Array(m + 1).fill(0).map(x => new Array(n + 1).fill(0));
+    //dp[x][y] x个0和y个1最大子集的长度
+
+    for (let i = 0; i < strs.length; i++) {
+        for (let x = m; x >= 0; x--) {
+            for (let y = n; y >= 0; y--) {
+                if (x - arr[i].zero >= 0 && y - arr[i].one >= 0) {
+                    dp[x][y] = Math.max(
+                        dp[x][y],
+                        dp[x - arr[i].zero][y - arr[i].one] + 1
+                    );
+                }
+            }
+        }
+    }
+    let ans = 0;
+    for (let x of dp) {
+        ans = Math.max(ans, ...x);
+    }
+    return ans;
+};
+```
+
+
+
+### TODO
+
+[1449. 数位成本和为目标值的最大数字](https://leetcode-cn.com/problems/form-largest-integer-with-digits-that-add-up-to-target/)
+
+[1155. 掷骰子的N种方法](https://leetcode-cn.com/problems/number-of-dice-rolls-with-target-sum/)
+
+[1049. 最后一块石头的重量 II](https://leetcode-cn.com/problems/last-stone-weight-ii/)
+
+[879. 盈利计划](https://leetcode-cn.com/problems/profitable-schemes/)
+
+[638. 大礼包](https://leetcode-cn.com/problems/shopping-offers/)
+
+[518. 零钱兑换 II](https://leetcode-cn.com/problems/coin-change-2/)
+
+[494. 目标和](https://leetcode-cn.com/problems/target-sum/)
+
+
+
