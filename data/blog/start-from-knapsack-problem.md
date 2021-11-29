@@ -1,9 +1,9 @@
 ---
-title: '从背包问题开始解决Leetcode上的类似问题'
+title: '从背包九讲开始解决Leetcode上的类似问题'
 date: '2021-11-21'
 tags: ['Algorithm', 'Dynamic programming']
 draft: false
-summary: '背包九讲是对于这一类的动态规划的算法问题的很好的总结和归纳，本文从背包问题开始，并尝试解决Leetcode上的类似的问题'
+summary: '背包九讲是对于背包这一类的动态规划的算法问题的很好的总结和归纳，本文从背包九讲开始，并尝试解决Leetcode上中等和困难难度的类似问题'
 ---
 
 ## 背包问题
@@ -332,6 +332,61 @@ var canPartition = function (nums) {
 };
 ```
 
+#### 例题:  [1049. 最后一块石头的重量 II](https://leetcode-cn.com/problems/last-stone-weight-ii/)
+
+> 有一堆石头，用整数数组 stones 表示。其中 stones[i] 表示第 i 块石头的重量。
+>
+> 每一回合，从中选出任意两块石头，然后将它们一起粉碎。假设石头的重量分别为 x 和 y，且 x <= y。那么粉碎的可能结果如下：
+>
+> 如果 x == y，那么两块石头都会被完全粉碎；
+> 如果 x != y，那么重量为 x 的石头将会完全粉碎，而重量为 y 的石头新重量为 y-x。
+> 最后，最多只会剩下一块 石头。返回此石头 最小的可能重量 。如果没有石头剩下，就返回 0。
+
+**示例 1：**
+
+```
+输入：stones = [2,7,4,1,8,1]
+输出：1
+解释：
+组合 2 和 4，得到 2，所以数组转化为 [2,7,1,8,1]，
+组合 7 和 8，得到 1，所以数组转化为 [2,1,1,1]，
+组合 2 和 1，得到 1，所以数组转化为 [1,1,1]，
+组合 1 和 1，得到 0，所以数组转化为 [1]，这就是最优值。
+```
+
+**提示：**
+
+- `1 <= stones.length <= 30`
+- `1 <= stones[i] <= 100`
+
+题目的问法比较巧妙，按题目的意思拿石头一起粉碎的过程等价于对它们的体积（价值）做加减，可以得到所有的可能性，就是求这个体积可加减后的绝对值的最小，因为总的重量是可知道的，等价于求`01背包`的可取价值的所有可能性，在求最值：
+
+```js
+/**
+ * @param {number[]} stones
+ * @return {number}
+ */
+var lastStoneWeightII = function (stones) {
+    let sum = stones.reduce((a, b) => a + b, 0);
+    let dp = new Array(sum + 1).fill(false);
+    //dp[i] 表示是否有方案的可以使得stones中选择一些达到价值i
+    dp[0] = true;
+    for (let i = 0; i < stones.length; i++) {
+        // 01背包
+        for (let j = sum; j > 0; j--) {
+            if (dp[j - stones[i]]) {
+                dp[j] = true;
+            }
+        }
+    }
+    let ans = sum;
+    for (let i = 0; i < dp.length; i++) {
+        if (dp[i]) ans = Math.min(ans, Math.abs(sum - i - i));
+    }
+    return ans;
+};
+```
+
 ### 完全背包
 
 #### 例题：[279. 完全平方数](https://leetcode-cn.com/problems/perfect-squares/)
@@ -421,7 +476,7 @@ var coinChange = function (coins, amount) {
 };
 ```
 
-### 二维背包
+###  多维背包
 
 #### 例题: [474. 一和零](https://leetcode-cn.com/problems/ones-and-zeroes/)
 
@@ -437,7 +492,8 @@ var coinChange = function (coins, amount) {
 输入：strs = ["10", "0001", "111001", "1", "0"], m = 5, n = 3
 输出：4
 解释：最多有 5 个 0 和 3 个 1 的最大子集是 {"10","0001","1","0"} ，因此答案是 4 。
-其他满足题意但较小的子集包括 {"0001","1"} 和 {"10","1","0"} 。{"111001"} 不满足题意，因为它含 4 个 1 ，大于 n 的值 3 。
+其他满足题意但较小的子集包括 {"0001","1"} 和 {"10","1","0"} 。
+{"111001"} 不满足题意，因为它含 4 个 1 ，大于 n 的值 3 。
 ```
 
 **提示：**
@@ -487,23 +543,348 @@ var findMaxForm = function (strs, m, n) {
 };
 ```
 
+#### 例题：[638. 大礼包](https://leetcode-cn.com/problems/shopping-offers/)
 
+> 在 LeetCode 商店中， 有 `n` 件在售的物品。每件物品都有对应的价格。然而，也有一些大礼包，每个大礼包以优惠的价格捆绑销售一组物品。
+>
+> 给你一个整数数组 `price` 表示物品价格，其中 `price[i]` 是第` i `件物品的价格。另有一个整数数组 `needs` 表示购物清单，其中 `needs[i]` 是需要购买第`i` 件物品的数量。
+>
+> 还有一个数组 `special` 表示大礼包，`special[i]` 的长度为` n + 1` ，其中 `special[i][j] `表示第 i 个大礼包中内含第 j 件物品的数量，且 `special[i][n] `（也就是数组中的最后一个整数）为第 `i` 个大礼包的价格。
+>
+> 返回 确切 满足购物清单所需花费的最低价格，你可以充分利用大礼包的优惠活动。你不能购买超出购物清单指定数量的物品，即使那样会降低整体价格。任意大礼包可无限次购买。
 
-### TODO
+示例 1：
 
-[1449. 数位成本和为目标值的最大数字](https://leetcode-cn.com/problems/form-largest-integer-with-digits-that-add-up-to-target/)
+```
+输入：price = [2,5], special = [[3,0,5],[1,2,10]], needs = [3,2]
+输出：14
+解释：有 A 和 B 两种物品，价格分别为 ¥2 和 ¥5 。 
+大礼包 1 ，你可以以 ¥5 的价格购买 3A 和 0B 。 
+大礼包 2 ，你可以以 ¥10 的价格购买 1A 和 2B 。 
+需要购买 3 个 A 和 2 个 B ， 所以付 ¥10 购买 1A 和 2B（大礼包 2），以及 ¥4 购买 2A 。
+```
 
-[1155. 掷骰子的N种方法](https://leetcode-cn.com/problems/number-of-dice-rolls-with-target-sum/)
+**提示：**
 
-[1049. 最后一块石头的重量 II](https://leetcode-cn.com/problems/last-stone-weight-ii/)
+- `n == price.length`
+- `n == needs.length`
+- `1 <= n <= 6`
+- `0 <= price[i] <= 10`
+- `0 <= needs[i] <= 10`
+- `1 <= special.length <= 100`
+- `special[i].length == n + 1`
+- `0 <= special[i][j] <= 50`
 
-[879. 盈利计划](https://leetcode-cn.com/problems/profitable-schemes/)
+ 参考[三叶小姐姐的解法](https://leetcode-cn.com/problems/shopping-offers/solution/gong-shui-san-xie-yi-ti-shuang-jie-zhuan-qgk1/)，三叶实在是太强了~ ，这个题目使用多维背包来做的时候，维度是物品的种类，限制是购物清单对于每种物品的需求，最多有6维！！！通过**与排列数建立映射关系**对维度进行压缩处理，然后分解成了两个完全背包的问题：
 
-[638. 大礼包](https://leetcode-cn.com/problems/shopping-offers/)
+```js
+/**
+ * @param {number[]} price
+ * @param {number[][]} special
+ * @param {number[]} needs
+ * @return {number}
+ */
+var shoppingOffers = function (price, special, needs) {
+    let len = price.length;
+    let g = new Array(len + 1);
+    //多维压缩 g[state] 表示i位物品的选择的可能性 3，4=》12
+    g[0] = 1;
+    for (let i = 1; i <= len; i++) {
+        g[i] = g[i - 1] * (needs[i - 1] + 1);
+    }
+    let dp = new Array(g[len]).fill(Infinity);
+    dp[0] = 0;
+    //dp[state]表示 构成压缩的状态i的最小费用
 
-[518. 零钱兑换 II](https://leetcode-cn.com/problems/coin-change-2/)
+    for (let state = 0; state < g[len]; state++) {
+        let cnt = new Array(len).fill(0);
+        //cnt存储每个维度的选择的数量
+        for (let i = 0; i < len; i++) {
+            cnt[i] = Math.floor((state % g[i + 1]) / g[i]);
+        }
+        //完全背包
+        for (let i = 0; i < len; i++) {
+            if (state - g[i] >= 0 && cnt[i] > 0)
+                dp[state] = Math.min(dp[state], dp[state - g[i]] + price[i]);
+        }
+        //完全背包
+        for (let x of special) {
+            let cur = state,
+                flag = false;
+            for (let i = 0; i < len; i++) {
+                cur -= x[i] * g[i];
+                //某个维度不能容纳
+                if (cnt[i] < x[i] || cur < 0) {
+                    flag = true;
+                    break;
+                }
+            }
+            if (flag) continue;
+            dp[state] = Math.min(dp[state], dp[cur] + x[len]);
+        }
+    }
+    return dp[g[len] - 1];
+};
+```
 
-[494. 目标和](https://leetcode-cn.com/problems/target-sum/)
+#### 例题：[879. 盈利计划](https://leetcode-cn.com/problems/profitable-schemes/)(困难)
+
+> 集团里有 n 名员工，他们可以完成各种各样的工作创造利润。
+>
+> 第 i 种工作会产生 profit[i] 的利润，它要求 group[i] 名成员共同参与。如果成员参与了其中一项工作，就不能参与另一项工作。
+>
+> 工作的任何至少产生 minProfit 利润的子集称为 盈利计划 。并且工作的成员总数最多为 n 。
+>
+> 有多少种计划可以选择？因为答案很大，所以 返回结果模 10^9 + 7 的值。
+
+**示例 1：**
+
+```
+输入：n = 5, minProfit = 3, group = [2,2], profit = [2,3]
+输出：2
+解释：至少产生 3 的利润，该集团可以完成工作 0 和工作 1 ，或仅完成工作 1 。
+总的来说，有两种计划。
+```
+
+**提示：**
+
+- `1 <= n <= 100`
+- `0 <= minProfit <= 100`
+- `1 <= group.length <= 100`
+- `1 <= group[i] <= 100`
+- `profit.length == group.length`
+- `0 <= profit[i] <= 100`
+
+问方案的多维费用背包问题（任务看作物品，完成任务所需要的人数是成本，任务的利润看作物品的价值），特殊在于存在容量维度需要满足`不低于`的条件，而不是常规的`不超过`, 需要对于这个状态作**等价变换**。这个等价变化（有点难想通，我思想不通达了，呜）
+
+> 由于没有设计动规数组存储**利润至少为负权**状态，我们需要根据**状态定义**做一个等价替换，将这**状态**映射到 `dp[i][0]`。这主要是利用所有的任务利润都为“非负数”，所以不可能出现利润为负的情况，这时候**利润至少为某个负数 k**的方案数其实是完全等价于**利润至少为 0**的方案数。
+
+```js
+/**
+ * @param {number} n
+ * @param {number} minProfit
+ * @param {number[]} group
+ * @param {number[]} profit
+ * @return {number}
+ */
+var profitableSchemes = function (n, minProfit, group, profit) {
+    let dp = new Array(n + 1).fill(0).map(() => new Array(minProfit + 1));
+	// dp[i][j]表示使用i个员工获取不少于利润j的方案数目
+    for (let i = 0; i <= n; i++) {
+        dp[i][0] = 1;
+    }
+    for (let i = 0; i < group.length; i++) {
+        // 二维01背包
+        for (let j = n; j >= group[i]; j--) {
+            for (let k = minProfit; k >= 0; k--) {
+                let u = Math.max(k - profit[i], 0); // 等价变换
+                if (dp[j][k] === undefined) dp[j][k] = 0;
+                if (dp[j - group[i]][u])
+                    dp[j][k] = (dp[j][k] + dp[j - group[i]][u]) % 1000000007;
+            }
+        }
+    }
+    return dp[n][minProfit] ?? 0;
+};
+```
+
+### 泛化背包
+
+#### 例题：1449. 数位成本和为目标值的最大数字（困难）
+
+> 给你一个整数数组 cost 和一个整数 target 。请你返回满足如下规则可以得到的 最大 整数：
+>
+> 给当前结果添加一个数位（i + 1）的成本为 cost[i] （cost 数组下标从 0 开始）。
+> 总成本必须恰好等于 target 。
+> 添加的数位中没有数字 0 。
+> 由于答案可能会很大，请你以字符串形式返回。
+>
+> 如果按照上述要求无法得到任何整数，请你返回 "0" 。
+
+**示例 1：**
+
+```
+输入：cost = [4,3,2,5,6,7,2,5,5], target = 9
+输出："7772"
+解释：添加数位 '7' 的成本为 2 ，添加数位 '2' 的成本为 3 。
+所以 "7772" 的代价为 2*3+ 3*1 = 9 。 
+"977" 也是满足要求的数字，但 "7772" 是较大的数字。
+ 数字     成本
+  1  ->   4
+  2  ->   3
+  3  ->   2
+  4  ->   5
+  5  ->   6
+  6  ->   7
+  7  ->   2
+  8  ->   5
+  9  ->   5
+```
+
+**提示：**
+
+- `cost.length == 9`
+- `1 <= cost[i] <= 5000`
+- `1 <= target <= 5000`
+
+分类到泛化背包是因为我觉得的**泛化的特点**是最为明显的。首先，它明显是个**完全背包**的问题，因为它不是简单的物品（物品成了数位），求和的方式有了泛化（物品的价值是直接获取的，他的值需要进行数位的转换，成为拼成的最大的数字的值），第三个特点就是它的问法的变化（求物品的最大价值成了**物品的种类**，题目中就是字符串形式最大的数），这样就成了一道困难题，其实本质没有变化。
+
+```js
+// 泛化后物品的值的比较
+function bigerHelp(a = {}, b = {}) {
+    let aNumAmount = Object.values(a).reduce((x, y) => x + y, 0);
+    let bNumAmount = Object.values(b).reduce((x, y) => x + y, 0);
+    if (aNumAmount > bNumAmount) return true;
+    if (aNumAmount < bNumAmount) return false;
+    for (let i = 9; i >= 1; i--) {
+        if (a[i] > b[i]) {
+            return true;
+        } else if (a[i] < b[i]) {
+            return false;
+        }
+    }
+    return false;
+}
+
+/**
+ * @param {number[]} cost
+ * @param {number} target
+ * @return {string}
+ */
+var largestNumber = function (cost, target) {
+    let dp = new Array(target + 1).fill(0).map(x => {
+        let tmp = {};
+        for (let i = 1; i <= 9; i++) {
+            tmp[i] = 0;
+        }
+        return tmp;
+    });
+    //dp[i] 表示总成本为i的最优方案的位数的构成的数组，只由1~9构成，这里使用Map优化
+    for (let i = 0; i <= target; i++) {
+        for (let j = 0; j < cost.length; j++) {
+            if (
+                i >= cost[j] &&
+                //下面的条件是限制总成本必须恰好等于 target
+                (i - cost[j] == 0 ||
+                    Object.values(dp[i - cost[j]]).reduce(
+                        (x, y) => x + y,
+                        0
+                    ) !== 0)
+            ) {
+                let tmp = { ...dp[i - cost[j]] };
+                tmp[j + 1]++;
+                if (bigerHelp(tmp, dp[i])) dp[i] = tmp;
+            }
+        }
+    }
+    if (Object.values(dp[target]).reduce((x, y) => x + y, 0) === 0) return '0';
+    let ans = '';
+    for (let i in dp[target]) {
+        for (let j = 0; j < dp[target][i]; j++) ans = i + ans;
+    }
+    return ans;
+};
+```
+
+### 分组的背包问题
+
+#### 例题： [1155. 掷骰子的N种方法](https://leetcode-cn.com/problems/number-of-dice-rolls-with-target-sum/)
+
+> 这里有 d 个一样的骰子，每个骰子上都有 f 个面，分别标号为 1, 2, ..., f。
+>
+> 我们约定：掷骰子的得到总点数为各骰子面朝上的数字的总和。
+>
+> 如果需要掷出的总点数为 target，请你计算出有多少种不同的组合情况（所有的组合情况总共有 f^d 种），模 10^9 + 7 后返回。
+
+**示例 1：**
+
+```
+输入：d = 1, f = 6, target = 3
+输出：1
+```
+
+对于每个骰子来说，他是一个分组，只能取一组中的一个面。
+
+```js
+const mod = 1000000007;
+/**
+ * @param {number} d
+ * @param {number} f
+ * @param {number} target
+ * @return {number}
+ */
+var numRollsToTarget = function (d, f, target) {
+    let dp = new Array(target + 1);
+    //dp[i] 表示构成i的骰子的组合数量
+    dp[0] = 1;
+    for (let k = 1; k <= d; k++) { // 每个分组
+        for (let i = target; i >= 0; i--) {
+            dp[i] = 0;
+            for (let j = 1; j <= f; j++) {
+                if (i - j >= 0 && dp[i - j] != undefined) {
+                    dp[i] = (dp[i] + dp[i - j]) % mod;
+                }
+            }
+        }
+    }
+    return dp[target];
+};
+```
+
+### 背包问题问法的变化
+
+#### 例题：[494. 目标和](https://leetcode-cn.com/problems/target-sum/)
+
+> 给你一个整数数组 coins 表示不同面额的硬币，另给一个整数 amount 表示总金额。
+>
+> 请你计算并返回可以凑成总金额的硬币组合数。如果任何硬币组合都无法凑出总金额，返回 0 。
+>
+> 假设每一种面额的硬币有无限个。 
+>
+> 题目数据保证结果符合 32 位带符号整数。
+
+**示例 1：**
+
+```
+输入：amount = 5, coins = [1, 2, 5]
+输出：4
+解释：有四种方式可以凑成总金额：
+5=5
+5=2+2+1
+5=2+1+1+1
+5=1+1+1+1+1 
+```
+
+**提示：**
+
+- `1 <= coins.length <= 300`
+- `1 <= coins[i] <= 5000`
+- `coins` 中的所有值 **互不相同**
+- `0 <= amount <= 5000`
+
+`完全背包问题`问`方案数目`, 相比于上面的几道题还是蛮简单的了：
+
+```js
+/**
+ * @param {number} amount
+ * @param {number[]} coins
+ * @return {number}
+ */
+var change = function (amount, coins) {
+    let dp = new Array(amount + 1).fill(0);
+    dp[0] = 1;
+    //dp[i]表示构成总金额大小为i的方案数
+    for (let j = 0; j < coins.length; j++) {
+        //完全背包
+        for (let i = 0; i <= amount; i++) {
+            if (i >= coins[j]) {
+                dp[i] = dp[i] + dp[i - coins[j]];
+            }
+        }
+    }
+    return dp[amount];
+};
+```
 
 
 
