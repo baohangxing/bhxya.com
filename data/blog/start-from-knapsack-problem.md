@@ -741,8 +741,6 @@ function exists(target, nums) {
         break
       }
     }
-    return dp[target];
-};
   }
   return dp[target.length - 1]
 }
