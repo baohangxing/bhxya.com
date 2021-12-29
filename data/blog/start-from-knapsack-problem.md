@@ -291,7 +291,7 @@ function maxValueInDependentPack(V, n, master = [], appendix = []) {
 
 ## Leetcode 里的背包问题
 
-### 01背包
+### 01 背包
 
 #### 例题：[416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/)
 
@@ -310,7 +310,7 @@ function maxValueInDependentPack(V, n, master = [], appendix = []) {
 - `1 <= nums.length <= 200`
 - `1 <= nums[i] <= 100`
 
-分割成两个子集可以变相的看成是取值和值一半的方案，就是01背包问题，问题也从求最大值转换成了最小的数量的方案（方案只要存在就必定可以拆分）
+分割成两个子集可以变相的看成是取值和值一半的方案，就是 01 背包问题，问题也从求最大值转换成了最小的数量的方案（方案只要存在就必定可以拆分）
 
 ```js
 /**
@@ -318,21 +318,21 @@ function maxValueInDependentPack(V, n, master = [], appendix = []) {
  * @return {boolean}
  */
 var canPartition = function (nums) {
-    let halfSum = nums.reduce((a, b) => a + b, 0) / 2;
-    if (Math.floor(halfSum) !== halfSum) return false; //不可整分的必然不行
-    let dp = new Array(halfSum + 1).fill(Infinity);
-    //dp[x]表示构成数x的最小的使用数字的数量
-    dp[0] = 0;
-    for (let i = 0; i < nums.length; i++) {
-        for (let j = halfSum; j >= nums[i]; j--) {
-            if (j - nums[i] >= 0) dp[j] = Math.min(dp[j], dp[j - nums[i]] + 1);
-        }
+  let halfSum = nums.reduce((a, b) => a + b, 0) / 2
+  if (Math.floor(halfSum) !== halfSum) return false //不可整分的必然不行
+  let dp = new Array(halfSum + 1).fill(Infinity)
+  //dp[x]表示构成数x的最小的使用数字的数量
+  dp[0] = 0
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = halfSum; j >= nums[i]; j--) {
+      if (j - nums[i] >= 0) dp[j] = Math.min(dp[j], dp[j - nums[i]] + 1)
     }
-    return dp[halfSum] !== Infinity;
-};
+  }
+  return dp[halfSum] !== Infinity
+}
 ```
 
-#### 例题:  [1049. 最后一块石头的重量 II](https://leetcode-cn.com/problems/last-stone-weight-ii/)
+#### 例题: [1049. 最后一块石头的重量 II](https://leetcode-cn.com/problems/last-stone-weight-ii/)
 
 > 有一堆石头，用整数数组 stones 表示。其中 stones[i] 表示第 i 块石头的重量。
 >
@@ -367,24 +367,24 @@ var canPartition = function (nums) {
  * @return {number}
  */
 var lastStoneWeightII = function (stones) {
-    let sum = stones.reduce((a, b) => a + b, 0);
-    let dp = new Array(sum + 1).fill(false);
-    //dp[i] 表示是否有方案的可以使得stones中选择一些达到价值i
-    dp[0] = true;
-    for (let i = 0; i < stones.length; i++) {
-        // 01背包
-        for (let j = sum; j > 0; j--) {
-            if (dp[j - stones[i]]) {
-                dp[j] = true;
-            }
-        }
+  let sum = stones.reduce((a, b) => a + b, 0)
+  let dp = new Array(sum + 1).fill(false)
+  //dp[i] 表示是否有方案的可以使得stones中选择一些达到价值i
+  dp[0] = true
+  for (let i = 0; i < stones.length; i++) {
+    // 01背包
+    for (let j = sum; j > 0; j--) {
+      if (dp[j - stones[i]]) {
+        dp[j] = true
+      }
     }
-    let ans = sum;
-    for (let i = 0; i < dp.length; i++) {
-        if (dp[i]) ans = Math.min(ans, Math.abs(sum - i - i));
-    }
-    return ans;
-};
+  }
+  let ans = sum
+  for (let i = 0; i < dp.length; i++) {
+    if (dp[i]) ans = Math.min(ans, Math.abs(sum - i - i))
+  }
+  return ans
+}
 ```
 
 ### 完全背包
@@ -395,13 +395,13 @@ var lastStoneWeightII = function (stones) {
 >
 > 给你一个整数 n ，返回和为 n 的完全平方数的 最少数量 。
 >
-> 完全平方数 是一个整数，其值等于另一个整数的平方；换句话说，其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是。 
+> 完全平方数 是一个整数，其值等于另一个整数的平方；换句话说，其值等于一个整数自乘的积。例如，1、4、9 和 16 都是完全平方数，而 3 和 11 不是。
 
 **示例 1：**
 
 ```
 输入：n = 12
-输出：3 
+输出：3
 解释：12 = 4 + 4 + 4
 ```
 
@@ -417,18 +417,16 @@ var lastStoneWeightII = function (stones) {
  * @return {number}
  */
 var numSquares = function (n) {
-    const arr = new Array(Math.ceil(Math.sqrt(n)))
-        .fill(0)
-        .map((x, i) => (i + 1) * (i + 1));
-    let dp = new Array(n + 1).fill(Infinity); //dp[i] 表示构成i的最少的完全平方数的数量
-    dp[0] = 0;
-    for (let i = 0; i < arr.length; i++) {
-        for (let j = 0; j <= n; j++) {
-            if (j - arr[i] >= 0) dp[j] = Math.min(dp[j], dp[j - arr[i]] + 1);
-        }
+  const arr = new Array(Math.ceil(Math.sqrt(n))).fill(0).map((x, i) => (i + 1) * (i + 1))
+  let dp = new Array(n + 1).fill(Infinity) //dp[i] 表示构成i的最少的完全平方数的数量
+  dp[0] = 0
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j <= n; j++) {
+      if (j - arr[i] >= 0) dp[j] = Math.min(dp[j], dp[j - arr[i]] + 1)
     }
-    return dp[n];
-};
+  }
+  return dp[n]
+}
 ```
 
 #### 例题： [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/)
@@ -438,13 +436,12 @@ var numSquares = function (n) {
 > 计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。
 >
 > 你可以认为每种硬币的数量是无限的。
->
 
 **示例 1：**
 
 ```
 输入：coins = [1, 2, 5], amount = 11
-输出：3 
+输出：3
 解释：11 = 5 + 5 + 1
 ```
 
@@ -463,20 +460,19 @@ var numSquares = function (n) {
  * @return {number}
  */
 var coinChange = function (coins, amount) {
-    let dp = new Array(amount + 1).fill(Infinity);
-    //dp[i] 表示构成金额i的最少的硬币的数量
-    dp[0] = 0;
-    for (let i = 0; i < coins.length; i++) {
-        for (let j = 0; j <= amount; j++) {
-            if (j - coins[i] >= 0)
-                dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1);
-        }
+  let dp = new Array(amount + 1).fill(Infinity)
+  //dp[i] 表示构成金额i的最少的硬币的数量
+  dp[0] = 0
+  for (let i = 0; i < coins.length; i++) {
+    for (let j = 0; j <= amount; j++) {
+      if (j - coins[i] >= 0) dp[j] = Math.min(dp[j], dp[j - coins[i]] + 1)
     }
-    return dp[amount] === Infinity ? -1 : dp[amount];
-};
+  }
+  return dp[amount] === Infinity ? -1 : dp[amount]
+}
 ```
 
-###  多维背包
+### 多维背包
 
 #### 例题: [474. 一和零](https://leetcode-cn.com/problems/ones-and-zeroes/)
 
@@ -503,7 +499,7 @@ var coinChange = function (coins, amount) {
 - `strs[i]` 仅由 `'0'` 和 `'1'` 组成
 - `1 <= m, n <= 100`
 
-二维背包问题，两个维度的限制：0和1的数量，求最大子集的长度：
+二维背包问题，两个维度的限制：0 和 1 的数量，求最大子集的长度：
 
 ```js
 /**
@@ -513,41 +509,38 @@ var coinChange = function (coins, amount) {
  * @return {number}
  */
 var findMaxForm = function (strs, m, n) {
-    let arr = strs.map(x => {
-        let zero = x.split('').filter(x => x === '0').length;
-        return {
-            zero: zero,
-            one: x.length - zero,
-        };
-    });
-    let dp = new Array(m + 1).fill(0).map(x => new Array(n + 1).fill(0));
-    //dp[x][y] x个0和y个1最大子集的长度
+  let arr = strs.map((x) => {
+    let zero = x.split('').filter((x) => x === '0').length
+    return {
+      zero: zero,
+      one: x.length - zero,
+    }
+  })
+  let dp = new Array(m + 1).fill(0).map((x) => new Array(n + 1).fill(0))
+  //dp[x][y] x个0和y个1最大子集的长度
 
-    for (let i = 0; i < strs.length; i++) {
-        for (let x = m; x >= 0; x--) {
-            for (let y = n; y >= 0; y--) {
-                if (x - arr[i].zero >= 0 && y - arr[i].one >= 0) {
-                    dp[x][y] = Math.max(
-                        dp[x][y],
-                        dp[x - arr[i].zero][y - arr[i].one] + 1
-                    );
-                }
-            }
+  for (let i = 0; i < strs.length; i++) {
+    for (let x = m; x >= 0; x--) {
+      for (let y = n; y >= 0; y--) {
+        if (x - arr[i].zero >= 0 && y - arr[i].one >= 0) {
+          dp[x][y] = Math.max(dp[x][y], dp[x - arr[i].zero][y - arr[i].one] + 1)
         }
+      }
     }
-    let ans = 0;
-    for (let x of dp) {
-        ans = Math.max(ans, ...x);
-    }
-    return ans;
-};
+  }
+  let ans = 0
+  for (let x of dp) {
+    ans = Math.max(ans, ...x)
+  }
+  return ans
+}
 ```
 
 #### 例题：[638. 大礼包](https://leetcode-cn.com/problems/shopping-offers/)
 
 > 在 LeetCode 商店中， 有 `n` 件在售的物品。每件物品都有对应的价格。然而，也有一些大礼包，每个大礼包以优惠的价格捆绑销售一组物品。
 >
-> 给你一个整数数组 `price` 表示物品价格，其中 `price[i]` 是第` i `件物品的价格。另有一个整数数组 `needs` 表示购物清单，其中 `needs[i]` 是需要购买第`i` 件物品的数量。
+> 给你一个整数数组 `price` 表示物品价格，其中 `price[i]` 是第`i`件物品的价格。另有一个整数数组 `needs` 表示购物清单，其中 `needs[i]` 是需要购买第`i` 件物品的数量。
 >
 > 还有一个数组 `special` 表示大礼包，`special[i]` 的长度为` n + 1` ，其中 `special[i][j] `表示第 i 个大礼包中内含第 j 件物品的数量，且 `special[i][n] `（也就是数组中的最后一个整数）为第 `i` 个大礼包的价格。
 >
@@ -558,9 +551,9 @@ var findMaxForm = function (strs, m, n) {
 ```
 输入：price = [2,5], special = [[3,0,5],[1,2,10]], needs = [3,2]
 输出：14
-解释：有 A 和 B 两种物品，价格分别为 ¥2 和 ¥5 。 
-大礼包 1 ，你可以以 ¥5 的价格购买 3A 和 0B 。 
-大礼包 2 ，你可以以 ¥10 的价格购买 1A 和 2B 。 
+解释：有 A 和 B 两种物品，价格分别为 ¥2 和 ¥5 。
+大礼包 1 ，你可以以 ¥5 的价格购买 3A 和 0B 。
+大礼包 2 ，你可以以 ¥10 的价格购买 1A 和 2B 。
 需要购买 3 个 A 和 2 个 B ， 所以付 ¥10 购买 1A 和 2B（大礼包 2），以及 ¥4 购买 2A 。
 ```
 
@@ -575,7 +568,7 @@ var findMaxForm = function (strs, m, n) {
 - `special[i].length == n + 1`
 - `0 <= special[i][j] <= 50`
 
- 参考[三叶小姐姐的解法](https://leetcode-cn.com/problems/shopping-offers/solution/gong-shui-san-xie-yi-ti-shuang-jie-zhuan-qgk1/)，三叶实在是太强了~ ，这个题目使用多维背包来做的时候，维度是物品的种类，限制是购物清单对于每种物品的需求，最多有6维！！！通过**与排列数建立映射关系**对维度进行压缩处理，然后分解成了两个完全背包的问题：
+参考[三叶小姐姐的解法](https://leetcode-cn.com/problems/shopping-offers/solution/gong-shui-san-xie-yi-ti-shuang-jie-zhuan-qgk1/)，三叶实在是太强了~ ，这个题目使用多维背包来做的时候，维度是物品的种类，限制是购物清单对于每种物品的需求，最多有 6 维！！！通过**与排列数建立映射关系**对维度进行压缩处理，然后分解成了两个完全背包的问题：
 
 ```js
 /**
@@ -585,46 +578,46 @@ var findMaxForm = function (strs, m, n) {
  * @return {number}
  */
 var shoppingOffers = function (price, special, needs) {
-    let len = price.length;
-    let g = new Array(len + 1);
-    //多维压缩 g[state] 表示i位物品的选择的可能性 3，4=》12
-    g[0] = 1;
-    for (let i = 1; i <= len; i++) {
-        g[i] = g[i - 1] * (needs[i - 1] + 1);
-    }
-    let dp = new Array(g[len]).fill(Infinity);
-    dp[0] = 0;
-    //dp[state]表示 构成压缩的状态i的最小费用
+  let len = price.length
+  let g = new Array(len + 1)
+  //多维压缩 g[state] 表示i位物品的选择的可能性 3，4=》12
+  g[0] = 1
+  for (let i = 1; i <= len; i++) {
+    g[i] = g[i - 1] * (needs[i - 1] + 1)
+  }
+  let dp = new Array(g[len]).fill(Infinity)
+  dp[0] = 0
+  //dp[state]表示 构成压缩的状态i的最小费用
 
-    for (let state = 0; state < g[len]; state++) {
-        let cnt = new Array(len).fill(0);
-        //cnt存储每个维度的选择的数量
-        for (let i = 0; i < len; i++) {
-            cnt[i] = Math.floor((state % g[i + 1]) / g[i]);
-        }
-        //完全背包
-        for (let i = 0; i < len; i++) {
-            if (state - g[i] >= 0 && cnt[i] > 0)
-                dp[state] = Math.min(dp[state], dp[state - g[i]] + price[i]);
-        }
-        //完全背包
-        for (let x of special) {
-            let cur = state,
-                flag = false;
-            for (let i = 0; i < len; i++) {
-                cur -= x[i] * g[i];
-                //某个维度不能容纳
-                if (cnt[i] < x[i] || cur < 0) {
-                    flag = true;
-                    break;
-                }
-            }
-            if (flag) continue;
-            dp[state] = Math.min(dp[state], dp[cur] + x[len]);
-        }
+  for (let state = 0; state < g[len]; state++) {
+    let cnt = new Array(len).fill(0)
+    //cnt存储每个维度的选择的数量
+    for (let i = 0; i < len; i++) {
+      cnt[i] = Math.floor((state % g[i + 1]) / g[i])
     }
-    return dp[g[len] - 1];
-};
+    //完全背包
+    for (let i = 0; i < len; i++) {
+      if (state - g[i] >= 0 && cnt[i] > 0)
+        dp[state] = Math.min(dp[state], dp[state - g[i]] + price[i])
+    }
+    //完全背包
+    for (let x of special) {
+      let cur = state,
+        flag = false
+      for (let i = 0; i < len; i++) {
+        cur -= x[i] * g[i]
+        //某个维度不能容纳
+        if (cnt[i] < x[i] || cur < 0) {
+          flag = true
+          break
+        }
+      }
+      if (flag) continue
+      dp[state] = Math.min(dp[state], dp[cur] + x[len])
+    }
+  }
+  return dp[g[len] - 1]
+}
 ```
 
 #### 例题：[879. 盈利计划](https://leetcode-cn.com/problems/profitable-schemes/)(困难)
@@ -668,24 +661,91 @@ var shoppingOffers = function (price, special, needs) {
  * @return {number}
  */
 var profitableSchemes = function (n, minProfit, group, profit) {
-    let dp = new Array(n + 1).fill(0).map(() => new Array(minProfit + 1));
-	// dp[i][j]表示使用i个员工获取不少于利润j的方案数目
-    for (let i = 0; i <= n; i++) {
-        dp[i][0] = 1;
+  let dp = new Array(n + 1).fill(0).map(() => new Array(minProfit + 1))
+  // dp[i][j]表示使用i个员工获取不少于利润j的方案数目
+  for (let i = 0; i <= n; i++) {
+    dp[i][0] = 1
+  }
+  for (let i = 0; i < group.length; i++) {
+    // 二维01背包
+    for (let j = n; j >= group[i]; j--) {
+      for (let k = minProfit; k >= 0; k--) {
+        let u = Math.max(k - profit[i], 0) // 等价变换
+        if (dp[j][k] === undefined) dp[j][k] = 0
+        if (dp[j - group[i]][u]) dp[j][k] = (dp[j][k] + dp[j - group[i]][u]) % 1000000007
+      }
     }
-    for (let i = 0; i < group.length; i++) {
-        // 二维01背包
-        for (let j = n; j >= group[i]; j--) {
-            for (let k = minProfit; k >= 0; k--) {
-                let u = Math.max(k - profit[i], 0); // 等价变换
-                if (dp[j][k] === undefined) dp[j][k] = 0;
-                if (dp[j - group[i]][u])
-                    dp[j][k] = (dp[j][k] + dp[j - group[i]][u]) % 1000000007;
-            }
-        }
+  }
+  return dp[n][minProfit] ?? 0
+}
+```
+
+### 组合背包
+
+#### 例题：[472. 连接词(困难)](https://leetcode-cn.com/problems/concatenated-words/)
+
+> 给你一个 不含重复 单词的字符串数组 words ，请你找出并返回 words 中的所有 连接词 。
+>
+> 连接词 定义为：一个完全由给定数组中的至少两个较短单词组成的字符串。
+
+**示例 1：**
+
+```
+输入：words = ["cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"]
+输出：["catsdogcats","dogcatsdog","ratcatdogcat"]
+解释："catsdogcats" 由 "cats", "dog" 和 "cats" 组成;
+     "dogcatsdog" 由 "dog", "cats" 和 "dog" 组成;
+     "ratcatdogcat" 由 "rat", "cat", "dog" 和 "cat" 组成。
+```
+
+**提示：**
+
+```
+1 <= words.length <= 10^4
+0 <= words[i].length <= 1000
+words[i] 仅由小写字母组成
+ 0 <= sum(words[i].length) <= 10^5
+```
+
+一个比较常规的方案是字典树加记忆化搜索，也可以将其转化为组合背包问题。
+
+让`words` 按从短到长排序; `wordSet` 为存放可以选择的物品容器`nums`, 数组中的值的为背包`target`; 因为容器`nums`中的值是可以重复选择的 且是`target`按顺序的;所以外层遍历`target`,内层遍历`nums`; 如果容器中有`target.slice(0, i + 1)`直接 `dp[i] = true`; 否则看是否可以组合得到。否则看是否可以组合得到 遍历`nums` 如果前一项是`true` 后面一部分可以在`nums`中找到 就`dp[i] = true`;
+最后 返回`dp`的最后一项;
+
+```js
+/**
+ * @param {string[]} words
+ * @return {string[]}
+ */
+var findAllConcatenatedWordsInADict = function (words) {
+  words.sort((a, b) => a.length - b.length)
+  const wordSet = new Set()
+  const ans = []
+  for (const word of words) {
+    if (exists(word, wordSet)) ans.push(word)
+    wordSet.add(word)
+  }
+  return ans
+}
+
+function exists(target, nums) {
+  const dp = Array(target.length).fill(false)
+  for (let i = 0; i < target.length; i++) {
+    if (nums.has(target.slice(0, i + 1))) {
+      dp[i] = true
+      continue
     }
-    return dp[n][minProfit] ?? 0;
+    for (let j = 0; j < i; j++) {
+      if (dp[j] && nums.has(target.slice(j + 1, i + 1))) {
+        dp[i] = true
+        break
+      }
+    }
+    return dp[target];
 };
+  }
+  return dp[target.length - 1]
+}
 ```
 
 ### 泛化背包
@@ -707,7 +767,7 @@ var profitableSchemes = function (n, minProfit, group, profit) {
 输入：cost = [4,3,2,5,6,7,2,5,5], target = 9
 输出："7772"
 解释：添加数位 '7' 的成本为 2 ，添加数位 '2' 的成本为 3 。
-所以 "7772" 的代价为 2*3+ 3*1 = 9 。 
+所以 "7772" 的代价为 2*3+ 3*1 = 9 。
 "977" 也是满足要求的数字，但 "7772" 是较大的数字。
  数字     成本
   1  ->   4
@@ -732,18 +792,18 @@ var profitableSchemes = function (n, minProfit, group, profit) {
 ```js
 // 泛化后物品的值的比较
 function bigerHelp(a = {}, b = {}) {
-    let aNumAmount = Object.values(a).reduce((x, y) => x + y, 0);
-    let bNumAmount = Object.values(b).reduce((x, y) => x + y, 0);
-    if (aNumAmount > bNumAmount) return true;
-    if (aNumAmount < bNumAmount) return false;
-    for (let i = 9; i >= 1; i--) {
-        if (a[i] > b[i]) {
-            return true;
-        } else if (a[i] < b[i]) {
-            return false;
-        }
+  let aNumAmount = Object.values(a).reduce((x, y) => x + y, 0)
+  let bNumAmount = Object.values(b).reduce((x, y) => x + y, 0)
+  if (aNumAmount > bNumAmount) return true
+  if (aNumAmount < bNumAmount) return false
+  for (let i = 9; i >= 1; i--) {
+    if (a[i] > b[i]) {
+      return true
+    } else if (a[i] < b[i]) {
+      return false
     }
-    return false;
+  }
+  return false
 }
 
 /**
@@ -752,43 +812,39 @@ function bigerHelp(a = {}, b = {}) {
  * @return {string}
  */
 var largestNumber = function (cost, target) {
-    let dp = new Array(target + 1).fill(0).map(x => {
-        let tmp = {};
-        for (let i = 1; i <= 9; i++) {
-            tmp[i] = 0;
-        }
-        return tmp;
-    });
-    //dp[i] 表示总成本为i的最优方案的位数的构成的数组，只由1~9构成，这里使用Map优化
-    for (let i = 0; i <= target; i++) {
-        for (let j = 0; j < cost.length; j++) {
-            if (
-                i >= cost[j] &&
-                //下面的条件是限制总成本必须恰好等于 target
-                (i - cost[j] == 0 ||
-                    Object.values(dp[i - cost[j]]).reduce(
-                        (x, y) => x + y,
-                        0
-                    ) !== 0)
-            ) {
-                let tmp = { ...dp[i - cost[j]] };
-                tmp[j + 1]++;
-                if (bigerHelp(tmp, dp[i])) dp[i] = tmp;
-            }
-        }
+  let dp = new Array(target + 1).fill(0).map((x) => {
+    let tmp = {}
+    for (let i = 1; i <= 9; i++) {
+      tmp[i] = 0
     }
-    if (Object.values(dp[target]).reduce((x, y) => x + y, 0) === 0) return '0';
-    let ans = '';
-    for (let i in dp[target]) {
-        for (let j = 0; j < dp[target][i]; j++) ans = i + ans;
+    return tmp
+  })
+  //dp[i] 表示总成本为i的最优方案的位数的构成的数组，只由1~9构成，这里使用Map优化
+  for (let i = 0; i <= target; i++) {
+    for (let j = 0; j < cost.length; j++) {
+      if (
+        i >= cost[j] &&
+        //下面的条件是限制总成本必须恰好等于 target
+        (i - cost[j] == 0 || Object.values(dp[i - cost[j]]).reduce((x, y) => x + y, 0) !== 0)
+      ) {
+        let tmp = { ...dp[i - cost[j]] }
+        tmp[j + 1]++
+        if (bigerHelp(tmp, dp[i])) dp[i] = tmp
+      }
     }
-    return ans;
-};
+  }
+  if (Object.values(dp[target]).reduce((x, y) => x + y, 0) === 0) return '0'
+  let ans = ''
+  for (let i in dp[target]) {
+    for (let j = 0; j < dp[target][i]; j++) ans = i + ans
+  }
+  return ans
+}
 ```
 
 ### 分组的背包问题
 
-#### 例题： [1155. 掷骰子的N种方法](https://leetcode-cn.com/problems/number-of-dice-rolls-with-target-sum/)
+#### 例题： [1155. 掷骰子的 N 种方法](https://leetcode-cn.com/problems/number-of-dice-rolls-with-target-sum/)
 
 > 这里有 d 个一样的骰子，每个骰子上都有 f 个面，分别标号为 1, 2, ..., f。
 >
@@ -806,7 +862,7 @@ var largestNumber = function (cost, target) {
 对于每个骰子来说，他是一个分组，只能取一组中的一个面。
 
 ```js
-const mod = 1000000007;
+const mod = 1000000007
 /**
  * @param {number} d
  * @param {number} f
@@ -814,21 +870,22 @@ const mod = 1000000007;
  * @return {number}
  */
 var numRollsToTarget = function (d, f, target) {
-    let dp = new Array(target + 1);
-    //dp[i] 表示构成i的骰子的组合数量
-    dp[0] = 1;
-    for (let k = 1; k <= d; k++) { // 每个分组
-        for (let i = target; i >= 0; i--) {
-            dp[i] = 0;
-            for (let j = 1; j <= f; j++) {
-                if (i - j >= 0 && dp[i - j] != undefined) {
-                    dp[i] = (dp[i] + dp[i - j]) % mod;
-                }
-            }
+  let dp = new Array(target + 1)
+  //dp[i] 表示构成i的骰子的组合数量
+  dp[0] = 1
+  for (let k = 1; k <= d; k++) {
+    // 每个分组
+    for (let i = target; i >= 0; i--) {
+      dp[i] = 0
+      for (let j = 1; j <= f; j++) {
+        if (i - j >= 0 && dp[i - j] != undefined) {
+          dp[i] = (dp[i] + dp[i - j]) % mod
         }
+      }
     }
-    return dp[target];
-};
+  }
+  return dp[target]
+}
 ```
 
 ### 背包问题问法的变化
@@ -839,7 +896,7 @@ var numRollsToTarget = function (d, f, target) {
 >
 > 请你计算并返回可以凑成总金额的硬币组合数。如果任何硬币组合都无法凑出总金额，返回 0 。
 >
-> 假设每一种面额的硬币有无限个。 
+> 假设每一种面额的硬币有无限个。
 >
 > 题目数据保证结果符合 32 位带符号整数。
 
@@ -852,7 +909,7 @@ var numRollsToTarget = function (d, f, target) {
 5=5
 5=2+2+1
 5=2+1+1+1
-5=1+1+1+1+1 
+5=1+1+1+1+1
 ```
 
 **提示：**
@@ -871,20 +928,17 @@ var numRollsToTarget = function (d, f, target) {
  * @return {number}
  */
 var change = function (amount, coins) {
-    let dp = new Array(amount + 1).fill(0);
-    dp[0] = 1;
-    //dp[i]表示构成总金额大小为i的方案数
-    for (let j = 0; j < coins.length; j++) {
-        //完全背包
-        for (let i = 0; i <= amount; i++) {
-            if (i >= coins[j]) {
-                dp[i] = dp[i] + dp[i - coins[j]];
-            }
-        }
+  let dp = new Array(amount + 1).fill(0)
+  dp[0] = 1
+  //dp[i]表示构成总金额大小为i的方案数
+  for (let j = 0; j < coins.length; j++) {
+    //完全背包
+    for (let i = 0; i <= amount; i++) {
+      if (i >= coins[j]) {
+        dp[i] = dp[i] + dp[i - coins[j]]
+      }
     }
-    return dp[amount];
-};
+  }
+  return dp[amount]
+}
 ```
-
-
-
