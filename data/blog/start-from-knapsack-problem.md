@@ -1,6 +1,6 @@
 ---
 title: '从背包九讲开始解决Leetcode上的类似问题'
-date: '2021-11-21'
+date: '2021-10-21'
 tags: ['Algorithm', 'Dynamic programming']
 draft: false
 summary: '背包九讲是对于背包这一类的动态规划的算法问题的很好的总结和归纳，本文从背包九讲开始，并尝试解决Leetcode上中等和困难难度的类似问题'
