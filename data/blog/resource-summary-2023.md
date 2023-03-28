@@ -5,16 +5,15 @@ tags: ['resource']
 draft: false
 summary: '2023前端阅读资源汇总'
 ---
-
 前端阅读资源汇总 2023版
 
-- `可选`：文章内容不具备普适性，阅读该文或许可以扩展知识面
-- `推荐`：文章内容具有普适性，但不一定具备实用性，阅读该文或许可以获得必要的知识面提升
-- `必读`：文章内容具备普适性，且具备实用性，阅读该文或许可以获得必要的技能提升
-- `进阶`：文章内容具备一定深度，阅读该文需要扎实的基础知识
+`可选`：文章内容不具备普适性，阅读该文或许可以扩展知识面
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+`推荐`：文章内容具有普适性，但不一定具备实用性，阅读该文或许可以获得必要的知识面提升
+
+`必读`：文章内容具备普适性，且具备实用性，阅读该文或许可以获得必要的技能提升
+
+`进阶`：文章内容具备一定深度，阅读该文需要扎实的基础知识
 
 - [TypeScript](#typescript)
 - [JavaScript](#javascript)
@@ -57,8 +56,6 @@ summary: '2023前端阅读资源汇总'
   - [ECMAScrit 规范](#ecmascrit-%E8%A7%84%E8%8C%83)
   - [其他资源](#%E5%85%B6%E4%BB%96%E8%B5%84%E6%BA%90)
 - [计算机](#%E8%AE%A1%E7%AE%97%E6%9C%BA)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## TypeScript
 
