@@ -1,60 +1,64 @@
 ---
 title: '前端阅读资源汇总'
-date: '2022-3-10'
+date: '2023-3-13'
 tags: ['resource']
 draft: false
-summary: '2021/2022个人的前端阅读资源汇总'
+summary: '2023前端阅读资源汇总'
 ---
-个人的前端阅读资源汇总 在[前端杂烩](https://juejin.cn/post/7069468539412807693)上有所增删
+
+前端阅读资源汇总 2023版
 
 - `可选`：文章内容不具备普适性，阅读该文或许可以扩展知识面
 - `推荐`：文章内容具有普适性，但不一定具备实用性，阅读该文或许可以获得必要的知识面提升
 - `必读`：文章内容具备普适性，且具备实用性，阅读该文或许可以获得必要的技能提升
 - `进阶`：文章内容具备一定深度，阅读该文需要扎实的基础知识
 
-## Awesome
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- `推荐` [awesome-vue](https://github.com/vuejs/awesome-vue)
-- `推荐` [awesome-react](https://github.com/enaqx/awesome-react)
-- `推荐` [awesome-javascript](https://github.com/sorrycc/awesome-javascript)
-- `推荐` [awesome-nodejs](https://github.com/sindresorhus/awesome-nodejs)
-- `推荐` [awesome-css](https://github.com/awesome-css-group/awesome-css)
-- `可选` [awesome](https://github.com/sindresorhus/awesome)
-- `可选` [awesome-awesome](https://github.com/emijrp/awesome-awesome)
-- `可选` [awesome-awesome-awesome](https://github.com/jonatasbaldin/awesome-awesome-awesome)
-- `可选` [Front-End-Develop-Guide](https://github.com/icepy/Front-End-Develop-Guide) （前端开发所使用语言的主流学习资源）
-- `可选` [knowledge](https://github.com/f2e-awesome/knowledge) （前端技术架构图谱）
-- `可选` [awesome-javascript-cn](https://github.com/jobbole/awesome-javascript-cn) （JavaScript 资源大全中文版）
-- `可选` [awesome-wechat-weapp](https://github.com/justjavac/awesome-wechat-weapp) - 微信小程序开发资源汇总
-- `可选` [awesome-graphql](https://github.com/chentsulin/awesome-graphql)
-- `可选` [Awesome Redux](https://github.com/xgrommx/awesome-redux)
-- `可选` [awesome-github-vue](https://github.com/opendigg/awesome-github-vue)
-- `可选` [awesome-github-wechat-weapp](https://github.com/opendigg/awesome-github-wechat-weapp) (微信小程序开源项目库汇总)
-- `可选` [awesome-nuxt](https://github.com/nuxt-community/awesome-nuxt)
-- `可选` [awesome-nextjs](https://github.com/unicodeveloper/awesome-nextjs)
-- `可选` [awesome-ui-component-library](https://github.com/anubhavsrivastava/awesome-ui-component-library)
-- `可选` [awesome-react-components](https://github.com/brillout/awesome-react-components)
-- `可选` [awesome-mac](https://github.com/jaywcjlove/awesome-mac)
-- `可选` [awesome-vscode](https://github.com/viatsko/awesome-vscode)
-- `可选` [Awesome-Design-Tools](https://github.com/LisaDziuba/Awesome-Design-Tools)
-- `可选` [awesome-webpack](https://github.com/webpack-contrib/awesome-webpack)
-- `可选` [awesome-gulp](https://github.com/alferov/awesome-gulp)
-- `可选` [awesome-github](https://github.com/AntBranch/awesome-github)
-- `可选` [awesome-npm](https://github.com/sindresorhus/awesome-npm)
-- `可选` [awesome-chrome-devtools](https://github.com/ChromeDevTools/awesome-chrome-devtools#chrome-devtools-protocol)
-- `可选` [Font Awesome](https://github.com/FortAwesome/Font-Awesome)
-- `可选` [awesome-resume](https://github.com/resumejob/awesome-resume) （程序员简历例句）
-- `可选` [awesome-interview-questions](https://github.com/MaximAbramchuck/awesome-interview-questions)
-- `可选` [awesome-webpack-cn](https://github.com/webpack-china/awesome-webpack-cn) （webpack 优秀中文文章）
-- `可选` [awesome-architecture](https://github.com/toutiaoio/awesome-architecture) （架构师技术图谱）
-- `可选` [awesome-books](https://github.com/guanpengchn/awesome-books) （开发者推荐阅读的书籍）
-- `可选` [awesome-programming-books](https://github.com/royeo/awesome-programming-books) （经典技术书籍推荐）
-- `可选` [awesome-bookmarks](https://github.com/PanJiaChen/awesome-bookmarks)
-- `可选` [给客户端同学的一份前端学习指南](https://juejin.im/post/5be2c66df265da61715dd19b "https://juejin.im/post/5be2c66df265da61715dd19b")
-- `可选` [这些年掘金上的优质前端文章，篇篇经典，一次打包带走！](https://juejin.im/post/5d42f4f46fb9a06adb7fc2a1 "https://juejin.im/post/5d42f4f46fb9a06adb7fc2a1")
-- `可选` [掘金排行前5000大佬 | 掘金文章排行 看这里](https://juejin.im/post/5d57f9a6f265da03b1204953 "https://juejin.im/post/5d57f9a6f265da03b1204953")
-- `可选` [面经合集 | 面试不用愁，掘友能解忧，一批大厂面试经验新鲜出炉啦~](https://juejin.im/post/5e731c4c51882549112b5c2d "https://juejin.im/post/5e731c4c51882549112b5c2d")
-- `推荐` [NodeJS 开发工具栈](https://adoyle.me/my-development-tools/nodejs/)（开发工具箱）
+- [TypeScript](#typescript)
+- [JavaScript](#javascript)
+- [HTML](#html)
+- [CSS](#css)
+- [React](#react)
+- [Vue](#vue)
+- [HTTP](#http)
+- [Git](#git)
+- [Node.js](#nodejs)
+- [CI/CD](#cicd)
+- [Font](#font)
+- [测试](#%E6%B5%8B%E8%AF%95)
+- [Chrome DevTools](#chrome-devtools)
+- [Service Worker](#service-worker)
+- [扩展](#%E6%89%A9%E5%B1%95)
+- [组件库](#%E7%BB%84%E4%BB%B6%E5%BA%93)
+- [性能优化](#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96)
+- [工程化](#%E5%B7%A5%E7%A8%8B%E5%8C%96)
+- [监控 & 稳定性](#%E7%9B%91%E6%8E%A7--%E7%A8%B3%E5%AE%9A%E6%80%A7)
+- [客户端](#%E5%AE%A2%E6%88%B7%E7%AB%AF)
+- [微前端](#%E5%BE%AE%E5%89%8D%E7%AB%AF)
+- [小程序](#%E5%B0%8F%E7%A8%8B%E5%BA%8F)
+- [Rust](#rust)
+- [可视化](#%E5%8F%AF%E8%A7%86%E5%8C%96)
+- [低代码](#%E4%BD%8E%E4%BB%A3%E7%A0%81)
+- [风格指南](#%E9%A3%8E%E6%A0%BC%E6%8C%87%E5%8D%97)
+- [编程指南](#%E7%BC%96%E7%A8%8B%E6%8C%87%E5%8D%97)
+- [解决方案](#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88)
+- [编译器相关](#%E7%BC%96%E8%AF%91%E5%99%A8%E7%9B%B8%E5%85%B3)
+- [工具](#%E5%B7%A5%E5%85%B7)
+- [算法](#%E7%AE%97%E6%B3%95)
+- [小技能](#%E5%B0%8F%E6%8A%80%E8%83%BD)
+- [总结](#%E6%80%BB%E7%BB%93)
+- [V8 引擎](#v8-%E5%BC%95%E6%93%8E)
+  - [编译原理](#%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86)
+  - [垃圾回收](#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6)
+  - [V8 性能优化](#v8-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96)
+  - [WebAssembly](#webassembly)
+  - [ECMAScrit 规范](#ecmascrit-%E8%A7%84%E8%8C%83)
+  - [其他资源](#%E5%85%B6%E4%BB%96%E8%B5%84%E6%BA%90)
+- [计算机](#%E8%AE%A1%E7%AE%97%E6%9C%BA)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ## TypeScript
 
@@ -71,11 +75,10 @@ summary: '2021/2022个人的前端阅读资源汇总'
 
 ## JavaScript
 
-- `必读` [ECMAScript 6 入门](https://es6.ruanyifeng.com/#README) \[电子书\]
+- `必读` [ECMAScript 6 入门](https://es6.ruanyifeng.com/#README) [电子书]
 - `必读` [ES modules: A cartoon deep-dive](https://segmentfault.com/a/1190000014318751)）
 - `必读` [Tasks, microtasks, queues and schedules](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)（宏任务、微任务、队列）
-- `推荐` [lodash](https://lodash.com/) \[文档\] (A modern JavaScript utility library delivering modularity, performance & extras)
-- `可选` [JavaScript与有限状态机](http%3A%2F%2Fwww.ruanyifeng.com%2Fblog%2F2013%2F09%2Ffinite-state_machine_for_javascript.html "http://www.ruanyifeng.com/blog/2013/09/finite-state_machine_for_javascript.html") (阮一峰)
+- `可选` [lodash](https://lodash.com/) \[文档\] (A modern JavaScript utility library delivering modularity, performance & extras)
 - `可选` [模块化规范之ES Modules &amp;&amp; CommonJS 规范](https://juejin.cn/post/6954899532689702926 "https://juejin.cn/post/6954899532689702926")
 - `可选` [CommonJS 和 ES6 Module 究竟有什么区别？](https://juejin.cn/post/6844904080955932680 "https://juejin.cn/post/6844904080955932680")
 - `可选` [CommonJS和ES6 Module 模块规范原理浅析](https://juejin.cn/post/6844904159385239566 "https://juejin.cn/post/6844904159385239566")
@@ -88,7 +91,6 @@ summary: '2021/2022个人的前端阅读资源汇总'
 - `可选` [debug](https://github.com/debug-js/debug) \[库\]
 - `可选` [perfect-scrollbar](https://github.com/mdbootstrap/perfect-scrollbar#options) \[库\]
 - `可选` [superagent](https://github.com/visionmedia/superagent) \[库\]
-- `可选` [jQuery](https://jquery.com/) \[文档\]
 - `可选` [zTree](https://github.com/zTree/zTree_v3) \[库\]( jQuery Tree Plugin)
 - `可选` [\[译\] SuperAgent中文使用文档](https://cnodejs.org/topic/5378720ed6e2d16149fa16bd)
 - `可选` [InversifyJS 中文文档](https://github.com/NeoYo/inversify.cn) \[文档\]
@@ -124,7 +126,6 @@ summary: '2021/2022个人的前端阅读资源汇总'
 - `可选`[【JS 进阶】你真的掌握变量和类型了吗](https://juejin.im/post/5cec1bcff265da1b8f1aa08f "https://juejin.im/post/5cec1bcff265da1b8f1aa08f")
 - `可选` [记一次面试题，正则表达式(?=a)是什么意思？](https://juejin.im/post/5ceb7d9df265da1b8811ba7f "https://juejin.im/post/5ceb7d9df265da1b8811ba7f")
 - `可选`[【JS迷你书】类型转换之拆箱操作](https://juejin.im/post/5ccfb58f518825405a198fcd "https://juejin.im/post/5ccfb58f518825405a198fcd")
-- `可选`[《三分钟阅读》7个有用的JavaScript技巧](https://juejin.im/post/5cc6f07ce51d456e3a5f089b "https://juejin.im/post/5cc6f07ce51d456e3a5f089b")
 - `可选` [我是如何将业务代码写优雅的](https://juejin.im/post/5cc7d540e51d456e537ef39e "https://juejin.im/post/5cc7d540e51d456e537ef39e")
 - `可选` [JS中的null和undefined,undefined为啥用void 0代替?](https://juejin.im/post/5cc58a72e51d456e845b4289 "https://juejin.im/post/5cc58a72e51d456e845b4289")
 - `可选` [async/await 优雅的错误处理方法](https://juejin.im/post/5c49eb28f265da613a545a4b "https://juejin.im/post/5c49eb28f265da613a545a4b")
@@ -234,11 +235,10 @@ summary: '2021/2022个人的前端阅读资源汇总'
 - `可选` [剖析 Vue.js 内部运行机制](https://github.com/answershuto/learnVue) \[电子书\]
 - `可选` [DMQ/MVVM](https://github.com/DMQ/mvvm/issues) (剖析Vue实现原理，如何实现双向绑定mvvm)
 - `可选` [深度剖析：如何实现一个 Virtual DOM 算法](https://github.com/livoras/blog/issues/13)
-- `可选` [Vue.js 技术揭秘](https://ustbhuangyi.github.io/vue-analysis/) \[电子书\]
 - `可选` [Vue SSR 指南](https://ssr.vuejs.org/zh/) \[文档\]
-- `可选` [Nuxt](https://zh.nuxtjs.org/guide/installation/) \[文档\] (Vue.js 服务端渲染)
+- `可选` [Nuxt 3](https://nuxt.com/) \[文档\] (Vue.js 服务端渲染)
 - `可选` [Vue Apollo](https://apollo.vuejs.org/zh-cn/) \[文档\] (在 Vue.js 应用中集成 GraphQL)
-- `可选` [Vue I18n](http%3A%2F%2Fkazupon.github.io%2Fvue-i18n%2F "http://kazupon.github.io/vue-i18n/") \[文档\] (国际化插件)
+- `可选` [Vue I18n](https://vue-i18n.intlify.dev/) \[文档\] (国际化插件)
 - `可选` [Vue Test Utils](https://vue-test-utils.vuejs.org/) \[文档\] （Vue.js 官方的单元测试实用工具库）
 - `可选` [vue-cli-plugin-i18n](https://github.com/kazupon/vue-cli-plugin-i18n) \[库\]
 - `可选` [nuxt-property-decorator](https://github.com/nuxt-community/nuxt-property-decorator) \[库\]
@@ -270,6 +270,7 @@ summary: '2021/2022个人的前端阅读资源汇总'
 - `可选` [Cookie](https://github.com/YBFACC/blog/issues/9)
 - `可选` [彻底明白ip地址，区分localhost、127.0.0.1和0.0.0.0](https://blog.csdn.net/liyi1009365545/article/details/84780476)
 - `可选` [前端跨域整理](https://juejin.im/post/5815f4abbf22ec006893b431 "https://juejin.im/post/5815f4abbf22ec006893b431")
+- `可选` [Server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events)
 
 ## Git
 
@@ -359,7 +360,6 @@ summary: '2021/2022个人的前端阅读资源汇总'
 - `可选` [如何使用 docker 部署前端应用](https://juejin.im/post/5c83cbaa6fb9a04a0f65fdaa "https://juejin.im/post/5c83cbaa6fb9a04a0f65fdaa")
 - `可选` [前端开发如何让持续集成/持续部署(CI/CD)跑起来](https://zhuanlan.zhihu.com/p/26701038)
 - `可选` [从零搭建docker+jenkins+node.js自动化部署环境](https://juejin.im/post/5b8ddb70e51d45389153f288 "https://juejin.im/post/5b8ddb70e51d45389153f288")
-- `可选` [从零搭建docker+jenkins+node.js自动化部署环境](https://juejin.im/post/5b8ddb70e51d45389153f288 "https://juejin.im/post/5b8ddb70e51d45389153f288")
 
 ## Font
 
@@ -370,9 +370,10 @@ summary: '2021/2022个人的前端阅读资源汇总'
 
 ## 测试
 
-- `推荐` [Jest](https://jestjs.io/) \[文档\]
+- `推荐` [Vitest](https://vitest.dev/) \[文档\]
 - `推荐` [javascript-testing-best-practices](https://github.com/goldbergyoni/javascript-testing-best-practices)
-- `推荐` [JavaScript 程序测试](https://javascript.ruanyifeng.com/tool/testing.html) (阮一峰)
+- `可选` [Jest](https://jestjs.io/) \[文档\]
+- `可选` [JavaScript 程序测试](https://javascript.ruanyifeng.com/tool/testing.html) (阮一峰)
 - `可选` [Nightwatch.js](http%3A%2F%2Fnightwatchjs.org%2F "http://nightwatchjs.org/") \[文档\]
 - `可选` [Mocha](https://mochajs.org/) \[文档\]
 - `可选` [Chai](https://www.chaijs.com/) \[文档\]
@@ -419,12 +420,11 @@ summary: '2021/2022个人的前端阅读资源汇总'
 
 ## 组件库
 
+- `推荐` [Arco Design](https://arco.design/) \[文档\]
+- `推荐` [Ant Design](https://ant.design/index-cn) \[文档\]
 - `推荐` [Ant Design](https://ant.design/index-cn) \[文档\]
 - `推荐` [Element Plus](https://element-plus.gitee.io/zh-CN/) \[文档\]（基于 Vue 3，面向设计师和开发者的组件库）
-- `推荐` [Element](https://element.eleme.cn/#/zh-CN) \[文档\] (基于Vue2.0的饿了么桌面端组件库)
 - `推荐` [Ant Design Vue](https://antdv.com/docs/vue/introduce-cn/) \[文档\]
-- `推荐` [Ant Design Pro](https://pro.ant.design/zh-CN/) \[文档\] (开箱即用的中台前端/设计解决方案)
-- `推荐` [Antd ProComponents](https://procomponents.ant.design/components) \[文档\]
 - `可选` [Salt UI](https://salt-ui.github.io/) \[文档\] (高效、简洁的移动端UI组件库)
 - `可选` [Ant Design Mobile 5.0](https://mobile.ant.design/zh) \[文档\]
 - `可选` [ant-design-pro-vue](https://pro.antdv.com/) \[文档\] (开箱即用的中台前端/设计解决方案)
@@ -435,27 +435,27 @@ summary: '2021/2022个人的前端阅读资源汇总'
 - `可选` [Bootstrap](https://v4.bootcss.com/) \[文档\]
 - `可选` [Bootstrap Table](https://bootstrap-table.com/) \[文档\]
 - `可选` [Bulma](https://bulma.io/) \[文档\]
-- [`可选`如何实现前端新手引导功能？ (qq.com)](https://mp.weixin.qq.com/s/loTDmZKR8_hF76xCkB0ehQ)
+- `可选` [如何实现前端新手引导功能](https://mp.weixin.qq.com/s/loTDmZKR8_hF76xCkB0ehQ)
 
 ## 性能优化
 
-- `可选` [压缩11000条 key 减少 7.2M，飞书如何实现 i18n 前端体积优化](https://mp.weixin.qq.com/s/Qt6BL5pa7OJIBLH7Sl_WCA)
-- `可选` [让老板虎躯一震的前端技术](https://juejin.im/post/5c3ff18b6fb9a04a0a5f76aa "https://juejin.im/post/5c3ff18b6fb9a04a0a5f76aa")
-- `可选` [前端优化不完全指南](https://aotu.io/notes/2016/03/16/optimization/)
+- `可选` [性能优化经验分享](https://mp.weixin.qq.com/s/ZfIWKRbF3Yq7sNFG2TsQFw)
 
 ## 工程化
 
 - `推荐` [Git 中文](https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%85%B3%E4%BA%8E%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6) \[文档\]
+- `推荐` [vite](https://cn.vitejs.dev/) \[文档\]
 - `推荐` [Webpack 中文](https://webpack.docschina.org/) \[文档\]
 - `推荐` [Gulp 中文](https://www.gulpjs.com.cn/docs/getting-started/quick-start/) \[文档\]
 - `推荐` [npm 中文](https://www.npmjs.cn/) \[文档\]
-- `推荐` [yarn 中文](https://yarn.bootcss.com/) \[文档\]
-- `推荐` [Lerna 中文](https://www.lernajs.cn/) \[文档\]
-- `推荐` [Lerna 文档](http%3A%2F%2Fwww.febeacon.com%2Flerna-docs-zh-cn%2F "http://www.febeacon.com/lerna-docs-zh-cn/") \[电子书\]
+- `推荐` [pnpm 中文](https://pnpm.io/zh/) \[文档\]
 - `推荐` [Babel](https://www.babeljs.cn/) \[文档\]
-- `推荐` [飞冰 - 基于 React 的研发解决方案](https://ice.work/) \[文档\]
 - `推荐` [ESLint](https://cn.eslint.org/) (可组装的 JavaScript 和 JSX 检查工具)
-- `推荐` [Prettier](https://prettier.io/) (An opinionated code formatter)
+- `可选` [yarn 中文](https://yarn.bootcss.com/) \[文档\]
+- `可选` [Lerna 中文](https://www.lernajs.cn/) \[文档\]
+- `可选` [Lerna 文档](http%3A%2F%2Fwww.febeacon.com%2Flerna-docs-zh-cn%2F "http://www.febeacon.com/lerna-docs-zh-cn/") \[电子书\]
+- `可选` [Prettier](https://prettier.io/) (An opinionated code formatter)
+- `可选` [飞冰 - 基于 React 的研发解决方案](https://ice.work/) \[文档\]
 - `可选` [深入浅出Webpack](http%3A%2F%2Fwebpack.wuhaolin.cn%2F "http://webpack.wuhaolin.cn/") \[电子书\]
 - `可选` [webpack-chain](https://github.com/neutrinojs/webpack-chain) \[库\] (生成和修改 Webpack 配置信息的链式API集)
 - `可选` [CKEditor 4](https://ckeditor.com/ckeditor-4/) (Smart WYSIWYG HTML editor)
@@ -479,7 +479,7 @@ summary: '2021/2022个人的前端阅读资源汇总'
 - `可选` [你真的会用Babel吗？](https://juejin.im/post/59b9ffa8f265da06710d8e89#comment "https://juejin.im/post/59b9ffa8f265da06710d8e89#comment") (全面了解Babel)
 - `可选` [再见，babel-preset-2015](https://zhuanlan.zhihu.com/p/29506685)
 - `可选` [Deploying ES2015+ Code in Production Today](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/)
-- `可选`[【建议改成】读完这篇你还不懂Babel我给你寄口罩](https://juejin.im/post/5e477139f265da574c566dda "https://juejin.im/post/5e477139f265da574c566dda")
+- `可选` [读完这篇你还不懂Babel我给你寄口罩](https://juejin.im/post/5e477139f265da574c566dda "https://juejin.im/post/5e477139f265da574c566dda")
 - `可选` [从 0 构建自己的脚手架/CLI知识体系（万字）](https://juejin.cn/post/6966119324478079007#heading-19 "https://juejin.cn/post/6966119324478079007#heading-19")
 - `可选` [前端工程化实战 - 企业级 CLI 开发](https://juejin.cn/post/6982215543017193502 "https://juejin.cn/post/6982215543017193502")
 - `可选` [前端工程化实战 - 可配置的模板管理](https://juejin.cn/post/6999397309180182564 "https://juejin.cn/post/6999397309180182564")
@@ -540,7 +540,7 @@ summary: '2021/2022个人的前端阅读资源汇总'
 
 ## 客户端
 
-- `推荐` [Flutter中文网](https://flutterchina.club/)
+- `可选` [Flutter中文网](https://flutterchina.club/)
 - `可选` [Flutter实战](https://book.flutterchina.club/) \[电子书\]
 - `可选` [国内大厂在移动端跨平台的框架接入分析](https://juejin.im/post/6844904177949212680?spm=ata.13261165.0.0.3a90671f2kN4Sp "https://juejin.im/post/6844904177949212680?spm=ata.13261165.0.0.3a90671f2kN4Sp")
 - `可选` [flutter凉了吗?](https://www.zhihu.com/question/374113031)
@@ -706,8 +706,7 @@ summary: '2021/2022个人的前端阅读资源汇总'
 
 ## 工具
 
-- `推荐` [Google翻译](https://chrome.google.com/webstore/detail/google-translate/aapbdbdomjkkjkaonfhkkikfgjllcleb?hl=zh-CN) (Chrome 插件)
-- `推荐` [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=zh-CN) (Chrome 插件)
+- `可选` [Vue.js devtools](https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd?hl=zh-CN) (Chrome 插件)
 - `可选` [Homebrew](https://brew.sh/) \[文档\]
 - `可选` [sindresorhus/emoj: Find relevant emoji from text on the command-line](https://github.com/sindresorhus/emoj) \[库\]
 - `可选` [uTools](https://u.tools/download.html)
@@ -762,33 +761,9 @@ summary: '2021/2022个人的前端阅读资源汇总'
 
 ## 总结
 
-- `推荐` [2021 JavaScript Rising Stars](https://risingstars.js.org/2021/zh)（包含 2016 年 ~ 2021 年的 Github 明星项目）
-- `推荐` [State of JS 2020](https://2020.stateofjs.com/zh-Hant/)
+- `推荐` [2022 JavaScript Rising Stars](https://risingstars.js.org/2022/zh)（包含 2016 年 ~ 2022 年的 Github 明星项目）
+- `推荐` [State of JS 2022](https://2022.stateofjs.com/zh-Hant/)
 - `推荐` [State of JS 2021](https://2021.stateofjs.com/zh-Hans/)
-- `可选` [16年毕业的前端er在杭州求职ing](https://juejin.im/post/5a64541bf265da3e2d338862 "https://juejin.im/post/5a64541bf265da3e2d338862")
-- `可选` [我在淘宝做前端的这三年 — 第一年](https://juejin.im/post/5c74d4b9e51d4512c37ea03b "https://juejin.im/post/5c74d4b9e51d4512c37ea03b")
-- `可选` [我在淘宝做前端的这三年 — 第二年](https://juejin.im/post/5c7dafe8f265da2de25bab27 "https://juejin.im/post/5c7dafe8f265da2de25bab27")
-- `可选` [我在淘宝做前端的这三年 — 第三年](https://juejin.im/post/5c811e426fb9a04a0c2f3bdb "https://juejin.im/post/5c811e426fb9a04a0c2f3bdb")
-- `可选` [阿里前端社招面试总结一位前端 2018 绝地求生记](https://juejin.im/post/5c90f573e51d450a7d7dfc75 "https://juejin.im/post/5c90f573e51d450a7d7dfc75")
-- `可选` [今天聊：你晋升失败的原因是什么](https://juejin.im/post/5e847b295188257375467466 "https://juejin.im/post/5e847b295188257375467466")
-- `可选` [如何成为公司独当一面的工程师](https://juejin.im/post/5dd4cc71f265da0bca7899cf "https://juejin.im/post/5dd4cc71f265da0bca7899cf")
-- `可选` [一名合格的程序员应该是什么样子](https://juejin.im/post/5d1574275188251a966bda58 "https://juejin.im/post/5d1574275188251a966bda58")
-- `可选` [25 岁，毕业写前端的这三年](https://juejin.im/post/5cd8c361f265da03a33c5521 "https://juejin.im/post/5cd8c361f265da03a33c5521")
-- `可选` [第二届搞基建|堂主 - 如何推动前端团队的基础设施建设](https://juejin.im/post/5e644a65518825495d69bca6 "https://juejin.im/post/5e644a65518825495d69bca6")
-- `可选` [前端API层架构，也许你做得还不够](https://juejin.im/post/5de7169451882512454b18d8 "https://juejin.im/post/5de7169451882512454b18d8")
-- `可选` [if 我是前端Leader，谈谈前端框架体系建设](https://juejin.im/post/5decf88f51882512327a510a "https://juejin.im/post/5decf88f51882512327a510a")
-- `可选` [有赞开源项目最佳实践](https://juejin.im/post/5b03871df265da0ba6102022 "https://juejin.im/post/5b03871df265da0ba6102022")
-- `可选` [技术栈：小菜前端的技术栈是如何规划和演进的](https://juejin.im/post/5c99c17df265da6129788ae2 "https://juejin.im/post/5c99c17df265da6129788ae2")
-- `可选` [滴滴后市场前端技术体系](https://juejin.im/post/5a3dd19b6fb9a0452846b159 "https://juejin.im/post/5a3dd19b6fb9a0452846b159")
-- `可选` [大型项目前端架构浅谈（8000字原创）](https://juejin.im/post/5cea1f705188250640005472 "https://juejin.im/post/5cea1f705188250640005472")
-- `可选` [前端生产方式：过去 10 年回顾和未来 10 年展望](https://juejin.im/post/5e81874be51d4546d23bf9b4 "https://juejin.im/post/5e81874be51d4546d23bf9b4")
-- `可选` [2019年前端大事件回顾：流年笑掷，未来可期](https://juejin.im/post/5def782ce51d4558181d27ce "https://juejin.im/post/5def782ce51d4558181d27ce")
-- `可选` [一套比较完整的前端技术选型，需要规整哪些东西，你知道不？](https://juejin.im/post/5b28d4fbe51d45587b47fd43 "https://juejin.im/post/5b28d4fbe51d45587b47fd43")
-- `可选` [前端技术全景展望](https://juejin.im/post/5b8df06fe51d4538b9427998 "https://juejin.im/post/5b8df06fe51d4538b9427998")
-- `可选` [前端技术体系大局观](https://zhuanlan.zhihu.com/p/23185351)
-- `可选` [精读《前端未来展望》](https://juejin.im/post/5d2d207b5188257aa971ee33 "https://juejin.im/post/5d2d207b5188257aa971ee33")
-- `可选` [阿里前端委员会主席圆心：未来前端的机会在哪里？](https://mp.weixin.qq.com/s?__biz=MzIzOTU0NTQ0MA==&mid=2247490769&idx=1&sn=7ee6e01045a6fe7e15f16aa33afcc2ad&chksm=e92921dede5ea8c8e93489271e8877d2e8688bd511b32e22c287b6c468904c5466b40f6a2bec&xtrack=1&scene=90&subscene=93&sessionid=1562203458&clicktime=15622)
-- `可选` [哪些技术会决定前端开发者的未来发展？](https://juejin.im/post/5d1589c8e51d45776031b02e "https://juejin.im/post/5d1589c8e51d45776031b02e")
 
 ## V8 引擎
 
@@ -829,7 +804,7 @@ summary: '2021/2022个人的前端阅读资源汇总'
 - `可选` [谈谈 GC：新的 Orinoco 垃圾收集器](https://v8.js.cn/blog/trash-talk/)
 - `可选` [C++ 的高性能垃圾回收（GC）](https://v8.js.cn/blog/high-performance-cpp-gc/)
 
-### 性能优化
+### V8 性能优化
 
 - `必读` [V8 中的快属性](https://v8.js.cn/blog/fast-properties/)
 - `必读` [V8 中的元素种类及性能优化](https://v8.js.cn/blog/elements-kinds/)
